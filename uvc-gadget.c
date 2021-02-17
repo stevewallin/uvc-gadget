@@ -2138,7 +2138,7 @@ int main(int argc, char *argv[])
             break;
 
         case 'f':
-            if (atoi(optarg) < 0 || atoi(optarg) > 1) {
+            if (atoi(optarg) < 0 || atoi(optarg) > 2) {
                 usage(argv[0]);
                 return 1;
             }
