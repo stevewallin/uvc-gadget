@@ -932,7 +932,7 @@ static void uvc_video_fill_buffer(struct uvc_device *dev, struct v4l2_buffer *bu
         memcpy(dev->mem[buf->index].start, dev->imgdata, dev->imgsize);
         buf->bytesused = dev->imgsize;
         break;
-    }
+    
 
     case V4L2_PIX_FMT_H264:
         memcpy(dev->mem[buf->index].start, dev->imgdata, dev->imgsize);
@@ -2249,7 +2249,7 @@ int main(int argc, char *argv[])
         case 2:
             fmt.fmt.pix.pixelformat= V4L2_PIX_FMT_H264;
             break;
-        
+        }
         /*fmt.fmt.pix.pixelformat = (default_format == 0) ? V4L2_PIX_FMT_YUYV : V4L2_PIX_FMT_MJPEG;*/
 
         fmt.fmt.pix.field = V4L2_FIELD_ANY;
@@ -2289,7 +2289,7 @@ int main(int argc, char *argv[])
         case 2:
             udev->fcc = V4L2_PIX_FMT_H264;
             break;
-
+    }
     /*udev->fcc = (default_format == 0) ? V4L2_PIX_FMT_YUYV : V4L2_PIX_FMT_MJPEG;*/
 
     udev->io = uvc_io_method;
