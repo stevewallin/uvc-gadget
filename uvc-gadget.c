@@ -164,6 +164,27 @@ static const struct uvc_frame_info uvc_frames_mjpeg[] = {
     },
 };
 
+static const struct uvc_frame_info uvc_frames_h264[] = {
+    {
+        WIDTH1,
+        HEIGHT1,
+        //{666666, 10000000, 50000000, 0},
+        {50000000, 0},
+    },
+    {
+        WIDTH2,
+        HEIGHT2,
+        {50000000, 0},
+    },
+    {
+        0,
+        0,
+        {
+            0,
+        },
+    },
+};
+
 static const struct uvc_format_info uvc_formats[] = {
     {V4L2_PIX_FMT_YUYV, uvc_frames_yuyv},
     {V4L2_PIX_FMT_MJPEG, uvc_frames_mjpeg},
@@ -2270,7 +2291,7 @@ int main(int argc, char *argv[])
             break;
 
     /*udev->fcc = (default_format == 0) ? V4L2_PIX_FMT_YUYV : V4L2_PIX_FMT_MJPEG;*/
-    
+
     udev->io = uvc_io_method;
     udev->bulk = bulk_mode;
     udev->nbufs = nbufs;
