@@ -1287,8 +1287,6 @@ static int uvc_video_reqbufs_userptr(struct uvc_device *dev, int nbufs)
             if (V4L2_PIX_FMT_MJPEG == dev->fcc)
                 memcpy(dev->dummy_buf[i].start, dev->imgdata, dev->imgsize);
 
-            if (V4L2_PIX_FMT_H264 == dev->fcc)
-                memcpy(dev->dummy_buf[i].start, dev->imgdata, dev->imgsize);
         }
 
         dev->mem = dev->dummy_buf;
@@ -1926,6 +1924,12 @@ static int uvc_events_process_data(struct uvc_device *dev, struct uvc_request_da
         dev->fcc = format->fcc;
         dev->width = frame->width;
         dev->height = frame->height;
+
+        if (dev->bulk) {
+			ret = uvc_handle_streamon_event(dev);
+			if (ret < 0)
+				goto err;
+		}
     }
 
     return 0;
