@@ -784,7 +784,7 @@ static int uvc_video_set_format(struct uvc_device *dev)
     fmt.fmt.pix.height = dev->height;
     fmt.fmt.pix.pixelformat = dev->fcc;
     fmt.fmt.pix.field = V4L2_FIELD_NONE;
-    if (dev->fcc == V4L2_PIX_FMT_H264)
+    if (dev->fcc == V4L2_PIX_FMT_YUYV)
         fmt.fmt.pix.sizeimage = dev->imgsize * 1.5;
 
     ret = ioctl(dev->uvc_fd, VIDIOC_S_FMT, &fmt);
